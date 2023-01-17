@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Signup Page </title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="center">
+      <h1>Signup</h1>
+      <form method="post">
+        <div class="txt_field">
+            <input type="text" required id="usrrName">
+            <span></span>
+            <label>Name</label>
+            
+          </div>
+        <div class="txt_field">
+          <input type="text" required id="usrrEmail">
+          <span></span>
+          <label>Username</label>
+          
+        </div>
+        <div class="txt_field">
+          <input type="password" required id="usrrPasswd">
+          <span></span>
+          <label>Password</label>
+        </div>
+        <input type="button" value="Signup" onclick="signup()">
+        
+      </form>
+    </div>
+    <script>
+      function signup(){
+        console.log("Signup called");
+        let name = document.getElementById("usrrName").value;
+          let email = document.getElementById("usrrEmail").value;
+          let password = document.getElementById("usrrPasswd").value;
+          console.log(name,email, password);
+          fetch("http://localhost:8081/register", {
+              method: "post",
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+              },
+
+              //make sure to serialize your JSON body
+              body: JSON.stringify({
+                namezzzz : name,
+                  emailzzzz: email,
+                  passwordzzzz: password
+              })
+          })
+              .then(res => res.json())
+              .then((response) => {
+                  console.log(response, "tfdft");
+                  
+                  
+                  //do something awesome that makes the world a better place
+              }).catch(err => {
+                  console.log(err);
+                  // Handle errors 
+              });
+      }
+  </script>
+
+
+  </body>
+</html>
